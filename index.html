@@ -1,69 +1,49 @@
 <!DOCTYPE html>
+
+<svg visibility="hidden" id="love" height="210" width="500">
+  <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+</svg>
 <html>
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
+    <link rel="stylesheet" href="stylesheets/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/paper.css" media="screen">
+    <script src="javascripts/vivus.js"></script>
+    <script>
+	    new Vivus('love', {duration: 200}, ()=>console.log("Hallo"));
+           // document.getElementById('love').setAttribute('visibility',"visible");
     </script>
+
+    <script>
+	window.addEventListener('load', function () {
+		// Duration calc
+		const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+		const encounterDate = new Date(2020, 5, 24); // month is 0-indexed
+		const today = new Date();
+		const diffDays = Math.round(Math.abs((encounterDate - today) / oneDay));
+		var div = document.getElementById('days');
+		div.innerHTML = diffDays;
+		// load drawings
+	})
+
+    </script>
+
     <title>Big now ...</title>
   </head>
 
   <body>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Elli + Carl</h1>
-            <h2></h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-        </span>
+      <header> <h1>Elli + Carl</h1> </header>
+      <section >
+        <h3>Days
+		<div id="days">
+   	<h3>
       </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to our secret site!</h3>
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-<h3>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/biocarl">biocarl</a> can be found on <a href="https://github.com/biocarl/timer">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
     </div>
+
 
     
   </body>
+
 </html>
