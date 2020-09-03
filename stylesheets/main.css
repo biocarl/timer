@@ -7,4 +7,17 @@ body{
 	text-align: center;
 	vertical-align: middle;
 	font-size:xxx-large;
+	z-index: 1;
+	background-size:contain!important;
 }
+
+svg{
+	position: absolute; top: 0px; left: 0px;
+/*	height:100vh !important;
+	width:100vw !important; */
+}
+
+#milestone {
+	color: gray;
+}
+

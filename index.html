@@ -10,24 +10,69 @@
     <meta name="viewport" content="width=640">
     <link rel="stylesheet" href="stylesheets/main.css" media="screen">
     <link rel="stylesheet" href="stylesheets/paper.css" media="screen">
-    <script src="javascripts/vivus.js"></script>
-    <script>
-	    new Vivus('love', {duration: 200}, ()=>console.log("Hallo"));
-           // document.getElementById('love').setAttribute('visibility',"visible");
-    </script>
-
+    <script src="javascripts/rough.js"></script>
     <script>
 	window.addEventListener('load', function () {
+		// Milestones
+		milestones = [100, 500, 1000, 1500, 2000]
 		// Duration calc
 		const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 		const encounterDate = new Date(2020, 5, 24); // month is 0-indexed
 		const today = new Date();
 		const diffDays = Math.round(Math.abs((encounterDate - today) / oneDay));
-		var div = document.getElementById('days');
-		div.innerHTML = diffDays;
-		// load drawings
-	})
+		var day_div = document.getElementById('days');
+		// Count up
+		var current = parseInt(day_div.innerHTML);
+		setInterval(function(){
+		if(current <= diffDays){
+			day_div.innerHTML = current++;
+		}
+		},10);
+		// Find milestone
+		var i = milestones.length;
+		while (milestones[--i] > diffDays);
+		i++;
 
+		day_div.addEventListener('click', function (event) {
+			var next_milestone = new Date(encounterDate);
+			next_milestone.setDate(next_milestone.getDate() +  milestones[i]);
+			message = "Next milestone"+"<br />" + milestones[i] + " days <br /><br />" + next_milestone.toString().split(" ").slice(0,4).join(" ");
+		    if (milestones.indexOf(diffDays) > -1){
+			    message = "Celebration!!!";
+		    }
+		    document.getElementById('milestone').innerHTML = message;
+		});
+
+
+
+		//const canvas = document.createElement('canvas');
+		//const context = canvas.getContext('2d');
+		//cw = canvas.width = 500;
+		//ch = canvas.height = 500;
+
+		//let x = 50;
+		//window.setInterval(() => {
+		//  // Clear canvas
+		//  context.save();
+		//  context.setTransform(1, 0, 0, 1, 0, 0);
+		//  context.clearRect(0, 0, canvas.width, canvas.height);
+		//  context.restore();
+		//  
+		//  // Draw rough shapes
+		//  const rc = rough.canvas(canvas);
+		//  rc.rectangle(x, 2, 100, 100);
+		//  rc.circle(x - 50, 50, 50);
+		//  rc.circle(x - 75, 50, 50);
+		//  rc.circle(x - 150, 50, 50);
+		//	rc.path("M0 200 v-200 h200 a100,100 90 0,1 0,200 a100,100 90 0,1 -200,0 z", { fill: 'green'} )
+		//  x++;
+		//  dataUrl = canvas.toDataURL();
+		//  document.body.style.background='url('+dataUrl+') no-repeat fixed center'
+
+
+		//}, 110);
+
+	})
     </script>
 
     <title>Big now ...</title>
@@ -35,11 +80,16 @@
 
   <body>
       <header> <h1>Elli + Carl</h1> </header>
-      <section >
+      <section>
         <h3>Days
-		<div id="days">
+		<div id="days"> 0 </div>
    	<h3>
       </section>
+
+      <section>
+        <h4 id="milestone"><h4>
+      </section>
+      <canvas id="canvas"/>
     </div>
 
 
