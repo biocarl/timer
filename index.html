@@ -18,6 +18,7 @@
 		// Duration calc
 		const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 		const encounterDate = new Date(2020, 5, 24); // month is 0-indexed
+        const marriageDate = new Date(2023, 7, 25); // month is 0-indexed
 		const today = new Date();
 		const diffDays = Math.round(Math.abs((encounterDate - today) / oneDay));
 		var day_div = document.getElementById('days');
@@ -37,7 +38,15 @@
 			var next_milestone = new Date(encounterDate);
 			next_milestone.setDate(next_milestone.getDate() +  milestones[i]);
 			message = "Next milestone"+"<br />" + milestones[i] + " days <br /><br />" + next_milestone.toString().split(" ").slice(0,4).join(" ");
-		    if (milestones.indexOf(diffDays) > -1){
+            if(marriageDate.getDate() === today.getDate()){
+                const element = document.createElement('div');
+                element.innerText = "du und ich ... 🔮";
+                var img = document.createElement("img");
+                img.src = "celebration.png";
+                element.appendChild(img);
+                document.body.appendChild(element);
+            }
+		    if (milestones.indexOf(diffDays) > -1 ){
 			    message = "Du und ich!";
 				showDiv = document.getElementById('show');
 				const canvas = document.createElement('canvas');
